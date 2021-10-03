@@ -9,11 +9,11 @@
 реализовать RestApi, для описания использовать Swagger,
 для разворачивания БД использовать Flyway
 
-## Инструкция по сборке
+## Инструкция по первичному запуску
 
 1. Создать в PostgreSQL базу данных **car_wash**
 2. mvn clean install
 3. mvn flyway:migrate
-4. Запустить CarwashApplication.java
+4. Запустить **CarwashApplication.java**
 5. Перейти на сайт [swagger](http://localhost:8080/swagger-ui/index.html)
 6. Ввести **/car-wash** и нажать **Explore**
