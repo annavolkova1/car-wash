@@ -17,3 +17,4 @@
 4. Запустить **CarwashApplication.java**
 5. Перейти на сайт [swagger](http://localhost:8080/swagger-ui/index.html)
 6. Ввести **/car-wash** и нажать **Explore**
+7. Чтобы выполнить все доступные методы, авторизуйтесь под пользователем ***Admin*** с паролем ***adminPassword***
