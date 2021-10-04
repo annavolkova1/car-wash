@@ -5,6 +5,8 @@ import com.car_wash.service.UsersService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import java.util.List;
 import javax.validation.Valid;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 @SecurityRequirement(name = "car-wash")
 public class UsersController {
 
+  private static final Logger logger = LogManager.getLogger(UsersController.class);
+
   private final UsersService usersService;
 
   public UsersController(final UsersService usersService) {
@@ -32,32 +36,37 @@ public class UsersController {
   @GetMapping
   public ResponseEntity<List<UsersDTO>> getAllUsers() {
 
+    logger.info("getting all Users");
     return ResponseEntity.ok(usersService.findAll());
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<UsersDTO> getUsers(@PathVariable final Integer id) {
+  public ResponseEntity<UsersDTO> getUser(@PathVariable final Integer id) {
 
+    logger.info("getting the User, Id:" + id);
     return ResponseEntity.ok(usersService.get(id));
   }
 
   @PostMapping
-  public ResponseEntity<Integer> createUsers(@RequestBody @Valid final UsersDTO usersDTO) {
+  public ResponseEntity<Integer> createUser(@RequestBody @Valid final UsersDTO usersDTO) {
 
+    logger.info("creating the User");
     return new ResponseEntity<>(usersService.create(usersDTO), HttpStatus.CREATED);
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<Void> updateUsers(@PathVariable final Integer id,
+  public ResponseEntity<Void> updateUser(@PathVariable final Integer id,
       @RequestBody @Valid final UsersDTO usersDTO) {
 
+    logger.info("updating the User, Id:" + id);
     usersService.update(id, usersDTO);
     return ResponseEntity.ok().build();
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> deleteUsers(@PathVariable final Integer id) {
+  public ResponseEntity<Void> deleteUser(@PathVariable final Integer id) {
 
+    logger.info("deleting the User, Id:" + id);
     usersService.delete(id);
     return ResponseEntity.noContent().build();
   }
